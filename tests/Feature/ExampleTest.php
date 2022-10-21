@@ -25,6 +25,9 @@ class ExampleTest extends TestCase
             ->showBackground()
             ->base64pdf();
 
+        $browsershotDecode = base64_decode($browsershotPdf);
+
+        $this->assertEquals($browsershotPdf, base64_encode($browsershotDecode));
 
         $lambdaPdf = BrowsershotLambda::html($content)
             ->margins(10, 18, 18, 10)
@@ -33,6 +36,8 @@ class ExampleTest extends TestCase
             ->showBackground()
             ->base64pdf();
 
-        $this->assertEquals($browsershotPdf,$lambdaPdf);
+        $lambdaDecode = base64_decode($lambdaPdf);
+
+        $this->assertEquals($lambdaPdf, base64_encode($lambdaDecode));
     }
 }
